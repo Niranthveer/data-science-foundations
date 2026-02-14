@@ -1,0 +1,11 @@
+!pip install diffusers transformers accelerate safetensors torch
+from diffusers import StableDiffusionPipeline
+import torch
+pipe = StableDiffusionPipeline.from_pretrained(
+"runwayml/stable-diffusion-v1-5",
+torch_dtype=torch.float16
+).to("cuda")
+prompt = "A beautiful sunset over a calm lake with mountains in the background"
+image = pipe(prompt).images[0]
+image.show()
+image.save("sunset_image.png")
