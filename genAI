@@ -1,0 +1,7 @@
+!pip install transformers
+from transformers import pipeline
+generator = pipeline("text-generation", model="gpt2")
+prompt = "A brave astronaut lands on Mars and discovers"
+result = generator(prompt, max_length=60, num_return_sequences=1)
+print("Generated Story:\n")
+print(result[0]['generated_text'])
