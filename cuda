@@ -1,0 +1,19 @@
+!pip install transformers diffusers accelerate safetensors torch
+from transformers import pipeline
+from diffusers import StableDiffusionPipeline
+from IPython.display import display
+import torch
+prompt = "A futuristic city with flying cars and glowing skyscrapers"
+story_generator = pipeline("text-generation", model="gpt2", no_repeat_ngram_size=3)
+story = story_generator(f"Write a short story about: {prompt}", max_length=120,
+num_return_sequences=1)[0]['generated_text']
+print("📖 Generated Story:\n")
+print(story)
+pipe = StableDiffusionPipeline.from_pretrained(
+"runwayml/stable-diffusion-v1-5",
+torch_dtype=torch.float16
+).to("cuda")
+image = pipe(prompt).images[0]
+display(image)
+image.save("generated_future_city.png")
+print("\n Image saved as 'generated_future_city.png'")
