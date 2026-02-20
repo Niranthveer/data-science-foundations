@@ -1,0 +1,24 @@
+import pandas as pd
+df= pd.DataFrame({'col1':[1,2,3,4], 'col2': ['abc','def','ghi','xyz'], 'col3': [111,222,333,444]})
+df
+df.head()
+df.tail()
+
+df.shape
+
+
+
+
+df.count()
+
+df['col2'].count()
+df['col2'].unique()
+
+df['col2'].nunique()
+
+
+
+df['col2'].nunique()
+
+df['col2'].unique()
+
